@@ -7,7 +7,7 @@ namespace BlogMVC.Models
     public class Blog
     {
         public int Id { get; set; }
-        public string AuthorId { get; set; } = string.Empty;
+        public string BlogUserId { get; set; } = string.Empty;
 
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at most {1} characters.", MinimumLength = 2)]
         public string Name { get; set; } = string.Empty;
@@ -29,7 +29,7 @@ namespace BlogMVC.Models
         public IFormFile? Image { get; set; }
 
         // Navigation Props
-        public virtual BlogUser? Author { get; set; }
+        public virtual BlogUser? BlogUser { get; set; }
         public virtual ICollection<Post> Posts { get; set; } = new HashSet<Post>();
     }
 }

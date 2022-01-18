@@ -7,13 +7,13 @@ namespace BlogMVC.Models
     {
         public int Id { get; set; }
         public int PostId { get; set; }
-        public string AuthorId { get; set; } = string.Empty;
+        public string BlogUserId { get; set; } = string.Empty;
 
         [StringLength(25, ErrorMessage = "The {0} must be at least {2} and no more than {1} characters long.", MinimumLength = 2)]
         public string Text { get; set; } = string.Empty;
 
         // Navigation props
         public virtual Post? Post { get; set; }
-        public virtual BlogUser? Author { get; set; }
+        public virtual BlogUser? BlogUser { get; set; }
     }
 }

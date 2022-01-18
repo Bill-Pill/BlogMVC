@@ -9,7 +9,7 @@ namespace BlogMVC.Models
     {
         public int Id { get; set; }
         public int BlogId { get; set; }
-        public string AuthorId { get; set; } = String.Empty;
+        public string BlogUserId { get; set; } = String.Empty;
 
         [StringLength(75, ErrorMessage = "The {0} must be at least {2} and no more than {1} characters long.", MinimumLength = 2)]
         public string Title { get; set; } = String.Empty;
@@ -38,7 +38,7 @@ namespace BlogMVC.Models
 
         // Navigation Props
         public virtual Blog? Blog { get; set; }
-        public virtual BlogUser? Author { get; set; }
+        public virtual BlogUser? BlogUser { get; set; }
         public virtual ICollection<Tag> Tags { get; set; } = new HashSet<Tag>();
         public virtual ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
     }
