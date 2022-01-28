@@ -31,9 +31,9 @@ namespace BlogMVC.Models
         public string? Slug { get; set; }
 
         [Display(Name = "Blog Image")]
-        public byte[] ImageData { get; set; } = Array.Empty<byte>();
+        public byte[]? ImageData { get; set; } 
         [Display(Name = "Image Type")]
-        public string ContentType { get; set; } = string.Empty;
+        public string? ContentType { get; set; }
         [NotMapped]
         public IFormFile? Image { get; set; }
 
