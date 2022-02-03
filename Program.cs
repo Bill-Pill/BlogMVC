@@ -1,6 +1,7 @@
 using BlogMVC.Data;
 using BlogMVC.Models;
 using BlogMVC.Services;
+using BlogMVC.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,6 +26,10 @@ builder.Services.AddRazorPages();
 
 // Register custom DataService class
 builder.Services.AddScoped<DataService>();
+
+// Register preconfigured instance of the MailSettings class
+builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
+builder.Services.AddScoped<IBlogEmailSender, EmailService>();
 
 var app = builder.Build();
 
