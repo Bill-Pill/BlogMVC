@@ -10,9 +10,9 @@ namespace BlogMVC.Models
         public string? BlogUserId { get; set; } 
 
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at most {1} characters.", MinimumLength = 2)]
-        public string Name { get; set; } = string.Empty;
+        public string Name { get; set; }
         [StringLength(500, ErrorMessage = "The {0} must be at least {2} and at most {1} characters.", MinimumLength = 2)]
-        public string Description { get; set; } = string.Empty;
+        public string Description { get; set; }
 
         [DataType(DataType.Date)]
         [Display(Name = "Created Date")]
@@ -22,7 +22,7 @@ namespace BlogMVC.Models
         public DateTime? Updated { get; set; }
 
         [Display(Name = "Blog Image")]
-        public byte[]? ImageData { get; set; } = Array.Empty<byte>();
+        public byte[]? ImageData { get; set; }
         [Display(Name = "Image Type")]
         public string? ContentType { get; set; } = string.Empty;
         [NotMapped]

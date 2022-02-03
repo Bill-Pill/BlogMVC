@@ -8,8 +8,8 @@ namespace BlogMVC.Models
     {
         public int Id { get; set; }
         public int PostId { get; set; }
-        public string BlogUserId { get; set; } = string.Empty;
-        public string ModeratorId { get; set; } = string.Empty;
+        public string? BlogUserId { get; set; }
+        public string? ModeratorId { get; set; }
 
         [StringLength(500, ErrorMessage = "The {0} must be at least {2} and at most {1} characters.", MinimumLength = 2)]
         [Display(Name = "Comment")]
