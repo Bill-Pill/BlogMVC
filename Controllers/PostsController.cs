@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using BlogMVC.Data;
 using BlogMVC.Models;
 using BlogMVC.Services;
+using Microsoft.AspNetCore.Identity;
 
 namespace BlogMVC.Controllers
 {
@@ -17,12 +18,14 @@ namespace BlogMVC.Controllers
         private readonly ApplicationDbContext _context;
         private readonly ISlugService _slugService;
         private readonly IImageService _imageService;
+        private readonly UserManager<BlogUser> _userManager;
 
-        public PostsController(ApplicationDbContext context, ISlugService slugService, IImageService imageService)
+        public PostsController(ApplicationDbContext context, ISlugService slugService, IImageService imageService, UserManager<BlogUser> userManager)
         {
             _context = context;
             _slugService = slugService;
             _imageService = imageService;
+            _userManager = userManager;
         }
 
         // GET: Posts
@@ -70,6 +73,9 @@ namespace BlogMVC.Controllers
             {
                 post.Created = DateTime.UtcNow;
 
+                var authorId = _userManager.GetUserId(User);
+                post.BlogUser.Id = authorId;
+
                 // Use _imageService to store specified image
                 post.ImageData = await _imageService.EncodeImageAsync(post.Image);
                 post.ContentType = _imageService.ContentType(post.Image);
@@ -88,6 +94,20 @@ namespace BlogMVC.Controllers
 
                 _context.Add(post);
                 await _context.SaveChangesAsync();
+
+                // Loop over incoming list of string tag values
+                foreach(var tagText in tagValues)
+                {
+                    _context.Add(new Tag()
+                    {
+                        PostId = post.Id,
+                        BlogUserId = authorId,
+                        Text = tagText
+                    });
+                }
+
+                await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
 
