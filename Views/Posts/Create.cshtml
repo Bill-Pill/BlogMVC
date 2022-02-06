@@ -58,15 +58,15 @@
                         </div>
                         <div class="row">
                             <div class="col d-grid">
-                                <button name="Add" type="button" class="btn btn-dark btn-sm">Add</button> 
+                                <button onclick="AddTag()" name="Add" type="button" class="btn btn-dark btn-sm">Add</button> 
                             </div>
                             <div class="col d-grid">
-                                <button name="Delete" type="button" class="btn btn-dark btn-sm">Delete</button>
+                                <button onclick="DeleteTag()" name="Delete" type="button" class="btn btn-dark btn-sm">Delete</button>
                             </div>
                         </div>
                     </div>
                     <div class="col d-grid">
-                        <select TagValues" id="TagList" multiple></select>
+                        <select name="TagValues" id="TagList" multiple></select>
                     </div>
 
                 </div>
@@ -91,6 +91,7 @@
 </div>
 
 @section Scripts{
+    <script src="~/js/custom.js"></script>
 
     <script>
         //Default font size but not for placeholder...
