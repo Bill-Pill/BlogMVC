@@ -36,9 +36,9 @@ namespace BlogMVC.Controllers
         }
 
         // GET: Posts/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string slug)
         {
-            if (id == null)
+            if (string.IsNullOrEmpty(slug))
             {
                 return NotFound();
             }
@@ -46,7 +46,8 @@ namespace BlogMVC.Controllers
             var post = await _context.Posts
                 .Include(p => p.Blog)
                 .Include(p => p.BlogUser)
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .Include(p => p.Tags)
+                .FirstOrDefaultAsync(m => m.Slug == slug);
             if (post == null)
             {
                 return NotFound();
@@ -74,7 +75,7 @@ namespace BlogMVC.Controllers
                 post.Created = DateTime.UtcNow;
 
                 var authorId = _userManager.GetUserId(User);
-                post.BlogUser.Id = authorId;
+                post.BlogUserId = authorId;
 
                 // Use _imageService to store specified image
                 post.ImageData = await _imageService.EncodeImageAsync(post.Image);
