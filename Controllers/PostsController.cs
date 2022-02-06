@@ -96,7 +96,7 @@ namespace BlogMVC.Controllers
                 }
 
                 // Detect incoming duplicate Slugs
-                if (!_slugService.IsUnique(slug))
+                else if (!_slugService.IsUnique(slug))
                 {
                     validationError = true;
                     // Add Model State error and return user back to Create view
