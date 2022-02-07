@@ -88,7 +88,7 @@ function search(str) {
 
 const swalWithDarkButton = Swal.mixin({
     customClass: {
-        confirmButton: 'btn btn-danger btn-sm btn-outline-dark'
+        confirmButton: 'btn btn-danger btn-sm btn-outline-dark d-grid'
     },
     icon: 'error',
     timer: 5000,
