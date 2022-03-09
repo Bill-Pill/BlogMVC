@@ -34,6 +34,10 @@
     background: rgb(58, 180, 251, 0.35)
 }
 
+.bg-warning {
+    background-color: #ff993b !important;
+}
+
 /* App-wide Font Weight */
 header.masthead .page-heading .subheading,
 header.masthead .site-heading .subheading,
@@ -71,12 +75,7 @@ header.masthead .site-heading {
     width: 100%;
 }
 
-button.btn-dark {
-    line-height: .5;
-    border-radius: 10px;
-}
-
-a.btn-dark {
+button.btn-dark, a.btn-dark {
     line-height: .5;
     border-radius: 10px;
 }
@@ -89,6 +88,8 @@ a.btn-dark {
     color: #212121;
     background-color: #ff993b;
     border-color: #ff993b;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .btn-warning:hover {
@@ -130,6 +131,11 @@ a.btn-dark {
 
 .page-link {
     color: #212121;
+}
+
+#searchBar {
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
 }
 
 /* Sweet Alert */
