@@ -30,11 +30,7 @@
                     </div>
 
                     <div>
-                        <p class="card-text bdtooltip"
-                       data-bs-toggle="tooltip"
-                       data-bs-placement="top"
-                       title=""
-                       data-bs-original-title="@blog.Description">@blog.Description</p>
+                        <p class="card-text">@blog.Description</p>
                     </div>
 
                     <br />
@@ -47,7 +43,7 @@
                     @if (User.IsInRole(BlogRole.Administrator.ToString()))
                     {
                         <div class="text-center">
-                            <a class="btn btn-dark btn-sm d-grid mb-2" asp-action="Create" asp-controller="Posts" asp-route-id="@blog.Id">
+                            <a class="btn btn-dark d-grid mb-2" asp-action="Create" asp-controller="Posts" asp-route-id="@blog.Id">
                                 Create Post
                             </a>
                         </div>
@@ -56,7 +52,7 @@
                     @if (User.IsInRole(BlogRole.Administrator.ToString()))
                     {
                         <div class="text-center">
-                            <a class="btn btn-dark btn-sm d-grid mb-2" asp-action="Edit" asp-controller="Posts" asp-route-id="@blog.Id">
+                            <a class="btn btn-dark d-grid mb-2" asp-action="Edit" asp-controller="Posts" asp-route-id="@blog.Id">
                                 Edit Post
                             </a>
                         </div>
