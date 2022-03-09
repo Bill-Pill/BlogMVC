@@ -38,6 +38,7 @@ namespace BlogMVC.Controllers
                 .OrderByDescending(b => b.Created)
                 .ToPagedListAsync(pageNumber, pageSize);
 
+            ViewData["HeaderImage"] = "/images/home-bg.png";
             ViewData["MainText"] = "Code of Billy";
             ViewData["SubText"] = "Thoughts and musings related to programming.";
 
