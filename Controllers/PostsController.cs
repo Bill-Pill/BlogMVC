@@ -57,13 +57,22 @@ namespace BlogMVC.Controllers
             if (id is null) return NotFound();
 
             var pageNumber = page ?? 1;
-            var pageSize = 5;
+            var pageSize = 6;
 
             //var posts = _context.Posts.Where(p => p.BlogId == id).ToList();
             var posts = await _context.Posts
                     .Where(p => p.BlogId == id && p.ReadyStatus == ReadyStatus.ProductionReady)
                     .OrderByDescending(p => p.Created)
                     .ToPagedListAsync(pageNumber, pageSize);
+
+            // Get current blog to pass image, title, and description to header.
+            var blog = await _context.Blogs
+                .Where(b => b.Id == id)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            ViewData["HeaderImage"] = _imageService.DecodeImage(blog.ImageData, blog.ContentType);
+            ViewData["MainText"] = blog.Name;
+            ViewData["SubText"] = blog.Description;
 
             return View(posts);
         }

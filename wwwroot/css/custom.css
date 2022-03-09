@@ -71,7 +71,12 @@ header.masthead .site-heading {
     width: 100%;
 }
 
-button.btn-sm, a.btn-sm {
+button.btn-dark {
+    line-height: .5;
+    border-radius: 10px;
+}
+
+a.btn-dark {
     line-height: .5;
     border-radius: 10px;
 }
