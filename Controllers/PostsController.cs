@@ -68,7 +68,7 @@ namespace BlogMVC.Controllers
             return View(posts);
         }
 
-        // GET: Posts/Details/5
+        // GET: Posts/Details/id
         public async Task<IActionResult> Details(string slug)
         {
             ViewData["Title"] = "Post Details Page";
