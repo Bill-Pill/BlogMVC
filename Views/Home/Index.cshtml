@@ -23,7 +23,7 @@
                 <img class="card-img-top" src="@_imageService.DecodeImage(blog.ImageData, blog.ContentType)" alt="Blog Image" />
                 <div class="card-body text-center">
 
-                    <div class="bg-info">
+                    <div class="bg-warning">
                         <hr class="card-hr" />
                         <h5 class="card-title">@blog.Name</h5>
                         <hr class="card-hr" />
@@ -82,9 +82,7 @@
 
 </div>
 
-<hr />
-
-<div class="row">
+<div class="row mt-5">
     <div class="col h3">
         Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
     </div>
