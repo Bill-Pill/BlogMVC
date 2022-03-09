@@ -42,6 +42,8 @@ namespace BlogMVC.Controllers
 
             var posts = _blogSearchService.Search(searchTerm);
 
+            ViewData["HeaderImage"] = "/images/home-bg.png";
+
             return View(await posts.ToPagedListAsync(pageNumber, pageSize));
         }
 
