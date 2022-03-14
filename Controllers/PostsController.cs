@@ -75,6 +75,7 @@ namespace BlogMVC.Controllers
             ViewData["HeaderImage"] = _imageService.DecodeImage(blog.ImageData, blog.ContentType);
             ViewData["MainText"] = blog.Name;
             ViewData["SubText"] = blog.Description;
+            ViewData["Title"] = blog.Name;
 
             return View(posts);
         }
@@ -82,7 +83,6 @@ namespace BlogMVC.Controllers
         // GET: Posts/Details/id
         public async Task<IActionResult> Details(string slug)
         {
-            ViewData["Title"] = "Post Details Page";
             if (string.IsNullOrEmpty(slug)) return NotFound();
 
             var post = await _context.Posts
@@ -107,6 +107,7 @@ namespace BlogMVC.Controllers
             ViewData["HeaderImage"] = _imageService.DecodeImage(post.ImageData, post.ContentType);
             ViewData["MainText"] = post.Title;
             ViewData["SubText"] = post.Abstract;
+            ViewData["Title"] = post.Title;
 
             return View(dataVM);
         }

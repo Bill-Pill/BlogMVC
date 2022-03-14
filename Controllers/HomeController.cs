@@ -48,11 +48,19 @@ namespace BlogMVC.Controllers
 
         public IActionResult About()
         {
+            ViewData["HeaderImage"] = "/images/home-bg.png";
+            ViewData["MainText"] = "Code of Billy";
+            ViewData["SubText"] = "About";
+
             return View();
         }
 
         public IActionResult Contact()
         {
+            ViewData["HeaderImage"] = "/images/home-bg.png";
+            ViewData["MainText"] = "Code of Billy";
+            ViewData["SubText"] = "Contact";
+
             return View();
         }
 
