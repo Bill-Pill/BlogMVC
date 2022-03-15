@@ -30,7 +30,8 @@ namespace BlogMVC.Services
                                         c.ModeratedBody.ToLower().Contains(searchTerm) ||
                                         c.BlogUser.FirstName.ToLower().Contains(searchTerm) ||
                                         c.BlogUser.LastName.ToLower().Contains(searchTerm) ||
-                                        c.BlogUser.Email.ToLower().Contains(searchTerm)));
+                                        c.BlogUser.Email.ToLower().Contains(searchTerm)) ||
+                    p.Tags.Any(t => t.Text.ToLower().Contains(searchTerm)));
             }
 
             return posts.OrderByDescending(p => p.Created);

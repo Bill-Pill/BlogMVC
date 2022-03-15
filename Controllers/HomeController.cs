@@ -25,7 +25,7 @@ namespace BlogMVC.Controllers
         public async Task<IActionResult> Index(int? page)
         {
             var pageNumber = page ?? 1;
-            var pageSize = 5;
+            var pageSize = 6;
 
             //var blogs = _context.Blogs.Where(
             //    b => b.Posts.Any(p => p.ReadyStatus == Enums.ReadyStatus.ProductionReady))
@@ -38,17 +38,29 @@ namespace BlogMVC.Controllers
                 .OrderByDescending(b => b.Created)
                 .ToPagedListAsync(pageNumber, pageSize);
 
+            ViewData["HeaderImage"] = "/images/home-bg.png";
+            ViewData["MainText"] = "Code of Billy";
+            ViewData["SubText"] = "Thoughts and musings related to programming.";
+
             return View(await blogs);
         }
 
 
         public IActionResult About()
         {
+            ViewData["HeaderImage"] = "/images/home-bg.png";
+            ViewData["MainText"] = "Code of Billy";
+            ViewData["SubText"] = "About";
+
             return View();
         }
 
         public IActionResult Contact()
         {
+            ViewData["HeaderImage"] = "/images/home-bg.png";
+            ViewData["MainText"] = "Code of Billy";
+            ViewData["SubText"] = "Contact";
+
             return View();
         }
 

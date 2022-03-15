@@ -34,6 +34,10 @@
     background: rgb(58, 180, 251, 0.35)
 }
 
+.bg-warning {
+    background-color: #ff993b !important;
+}
+
 /* App-wide Font Weight */
 header.masthead .page-heading .subheading,
 header.masthead .site-heading .subheading,
@@ -71,7 +75,7 @@ header.masthead .site-heading {
     width: 100%;
 }
 
-button.btn-sm, a.btn-sm {
+button.btn-dark, a.btn-dark {
     line-height: .5;
     border-radius: 10px;
 }
@@ -84,12 +88,20 @@ button.btn-sm, a.btn-sm {
     color: #212121;
     background-color: #ff993b;
     border-color: #ff993b;
+    border-radius: 10px;
+    
 }
 
 .btn-warning:hover {
     color: white;
     background-color: #212121;
     outline: 4px solid #ff993b;
+}
+
+#searchButton {
+    border-radius: 0px;
+    border-bottom-right-radius: 10px !important;
+    border-top-right-radius: 10px; !important;
 }
 
 /* Card Styles */
@@ -125,6 +137,15 @@ button.btn-sm, a.btn-sm {
 
 .page-link {
     color: #212121;
+}
+
+#searchBar {
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+#tagImage {
+    width: 50%;
 }
 
 /* Sweet Alert */
