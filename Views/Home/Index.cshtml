@@ -12,7 +12,7 @@
 @model IPagedList<Blog>
 
 @{
-    ViewData["Title"] = "Blog Index";
+    ViewData["Title"] = "Home";
 }
 
 <div class="row">
@@ -23,18 +23,14 @@
                 <img class="card-img-top" src="@_imageService.DecodeImage(blog.ImageData, blog.ContentType)" alt="Blog Image" />
                 <div class="card-body text-center">
 
-                    <div class="bg-info">
+                    <div class="bg-warning">
                         <hr class="card-hr" />
                         <h5 class="card-title">@blog.Name</h5>
                         <hr class="card-hr" />
                     </div>
 
                     <div>
-                        <p class="card-text bdtooltip"
-                       data-bs-toggle="tooltip"
-                       data-bs-placement="top"
-                       title=""
-                       data-bs-original-title="@blog.Description">@blog.Description</p>
+                        <p class="card-text">@blog.Description</p>
                     </div>
 
                     <br />
@@ -47,7 +43,7 @@
                     @if (User.IsInRole(BlogRole.Administrator.ToString()))
                     {
                         <div class="text-center">
-                            <a class="btn btn-dark btn-sm d-grid mb-2" asp-action="Create" asp-controller="Posts" asp-route-id="@blog.Id">
+                            <a class="btn btn-dark d-grid mb-2" asp-action="Create" asp-controller="Posts" asp-route-id="@blog.Id">
                                 Create Post
                             </a>
                         </div>
@@ -56,7 +52,7 @@
                     @if (User.IsInRole(BlogRole.Administrator.ToString()))
                     {
                         <div class="text-center">
-                            <a class="btn btn-dark btn-sm d-grid mb-2" asp-action="Edit" asp-controller="Posts" asp-route-id="@blog.Id">
+                            <a class="btn btn-dark d-grid mb-2" asp-action="Edit" asp-controller="Posts" asp-route-id="@blog.Id">
                                 Edit Post
                             </a>
                         </div>
@@ -82,9 +78,7 @@
 
 </div>
 
-<hr />
-
-<div class="row">
+<div class="row mt-5">
     <div class="col h3">
         Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
     </div>

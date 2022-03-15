@@ -42,6 +42,8 @@ namespace BlogMVC.Controllers
 
             var posts = _blogSearchService.Search(searchTerm);
 
+            ViewData["HeaderImage"] = "/images/home-bg.png";
+
             return View(await posts.ToPagedListAsync(pageNumber, pageSize));
         }
 
@@ -57,7 +59,7 @@ namespace BlogMVC.Controllers
             if (id is null) return NotFound();
 
             var pageNumber = page ?? 1;
-            var pageSize = 5;
+            var pageSize = 6;
 
             //var posts = _context.Posts.Where(p => p.BlogId == id).ToList();
             var posts = await _context.Posts
@@ -65,13 +67,22 @@ namespace BlogMVC.Controllers
                     .OrderByDescending(p => p.Created)
                     .ToPagedListAsync(pageNumber, pageSize);
 
+            // Get current blog to pass image, title, and description to header.
+            var blog = await _context.Blogs
+                .Where(b => b.Id == id)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            ViewData["HeaderImage"] = _imageService.DecodeImage(blog.ImageData, blog.ContentType);
+            ViewData["MainText"] = blog.Name;
+            ViewData["SubText"] = blog.Description;
+            ViewData["Title"] = blog.Name;
+
             return View(posts);
         }
 
         // GET: Posts/Details/id
         public async Task<IActionResult> Details(string slug)
         {
-            ViewData["Title"] = "Post Details Page";
             if (string.IsNullOrEmpty(slug)) return NotFound();
 
             var post = await _context.Posts
@@ -96,6 +107,7 @@ namespace BlogMVC.Controllers
             ViewData["HeaderImage"] = _imageService.DecodeImage(post.ImageData, post.ContentType);
             ViewData["MainText"] = post.Title;
             ViewData["SubText"] = post.Abstract;
+            ViewData["Title"] = post.Title;
 
             return View(dataVM);
         }

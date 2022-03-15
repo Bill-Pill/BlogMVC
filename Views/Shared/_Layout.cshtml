@@ -6,7 +6,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>@ViewData["Title"] - Blog MVC</title>
+    <title>@ViewData["Title"] - Code of Billy</title>
 
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
@@ -26,7 +26,7 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" target="_blank" href="https://www.billydelashmutt.com">Billy DeLashmutt</a>
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index">Code of Billy</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
                 <i class="fas fa-bars"></i>
@@ -49,8 +49,7 @@
         </div>
     </nav>
     <!-- Page Header-->
-    @*background-image: url(@ViewData["HeaderImage"])*@
-    <header class="masthead" style="background-image: url('@Url.Content("/images/home-bg.png")')">
+    <header class="masthead" style="background-image: url(@ViewData["HeaderImage"])">
         <div class="container position-relative px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
@@ -60,9 +59,9 @@
 
                         <form asp-action="SearchIndex" asp-controller="Posts">
                             <div class="input-group mt-5">
-                                <input type="text" name="SearchTerm" class="form-control" placeholder="Search Term">
+                                <input required id="searchBar" type="text" name="SearchTerm" class="form-control" placeholder="Search Term">
                                 <div class="input-group-append">
-                                    <button class="btn btn-warning" type="submit">Search</button>
+                                    <button id="searchButton" class="btn btn-warning" type="submit">Search</button>
                                 </div>
                             </div>
                         </form>
@@ -84,23 +83,23 @@
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <ul class="list-inline text-center">
                         <li class="list-inline-item">
-                            <a href="#!">
+                            <a href="https://www.linkedin.com/in/delashmuttwa/" target="_blank">
                                 <span class="fa-stack fa-lg">
                                     <i class="fas fa-circle fa-stack-2x"></i>
-                                    <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                                    <i class="fab fa-linkedin-in fa-stack-1x fa-inverse"></i>
                                 </span>
                             </a>
                         </li>
                         <li class="list-inline-item">
-                            <a href="#!">
+                            <a href="https://www.billydelashmutt.com" target="_blank">
                                 <span class="fa-stack fa-lg">
                                     <i class="fas fa-circle fa-stack-2x"></i>
-                                    <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                                    <i class="fas fa-user fa-stack-1x fa-inverse"></i>
                                 </span>
                             </a>
                         </li>
                         <li class="list-inline-item">
-                            <a href="#!">
+                            <a href="https://github.com/Bill-Pill" target="_blank">
                                 <span class="fa-stack fa-lg">
                                     <i class="fas fa-circle fa-stack-2x"></i>
                                     <i class="fab fa-github fa-stack-1x fa-inverse"></i>
