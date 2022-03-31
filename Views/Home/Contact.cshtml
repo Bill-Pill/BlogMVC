@@ -1,6 +1,10 @@
 ﻿@using BlogMVC.ViewModels
 @model ContactMe
 
+@{
+    ViewData["Title"] = "Contact";
+}
+
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
@@ -46,7 +50,7 @@
                 </div>
                 <br>
                 <div id="success"></div>
-                <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
+                <button type="submit" class=" mb-5 btn btn-primary" id="sendMessageButton">Send</button>
             </form>
         </div>
     </div>

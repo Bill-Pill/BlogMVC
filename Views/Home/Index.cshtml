@@ -11,13 +11,16 @@
 
 @model IPagedList<Blog>
 
+@{
+    ViewData["Title"] = "Home";
+}
 
 <div class="row">
     @foreach (var blog in Model)
     {
         <div class="col-sm-12 col-md-6 col-lg-4 mt-2">
             <div class="card border-dark">
-                <img class="card-img-top" src="@_imageService.DecodeImage(blog.ImageData, blog.ContentType)" />
+                <img class="card-img-top" src="@_imageService.DecodeImage(blog.ImageData, blog.ContentType)" alt="Blog Image" />
                 <div class="card-body text-center">
 
                     <div class="bg-warning">
@@ -27,16 +30,12 @@
                     </div>
 
                     <div>
-                        <p class="card-text bdtooltip"
-                       data-bs-toggle="tooltip"
-                       data-bs-placement="top"
-                       title=""
-                       data-bs-original-title="@blog.Description">@blog.Description</p>
+                        <p class="card-text">@blog.Description</p>
                     </div>
 
                     <br />
                     <div class="text-center">
-                        <a class="btn btn-dark btn-sm d-grid mb-2" asp-action="BlogPostIndex" asp-controller="Posts" asp-route-id="@blog.Id">
+                        <a class="btn btn-dark d-grid mb-2" asp-action="BlogPostIndex" asp-controller="Posts" asp-route-id="@blog.Id">
                             Read Posts
                         </a>
                     </div>
@@ -44,7 +43,7 @@
                     @if (User.IsInRole(BlogRole.Administrator.ToString()))
                     {
                         <div class="text-center">
-                            <a class="btn btn-dark btn-sm d-grid mb-2" asp-action="Create" asp-controller="Posts" asp-route-id="@blog.Id">
+                            <a class="btn btn-dark d-grid mb-2" asp-action="Create" asp-controller="Posts" asp-route-id="@blog.Id">
                                 Create Post
                             </a>
                         </div>
@@ -53,7 +52,7 @@
                     @if (User.IsInRole(BlogRole.Administrator.ToString()))
                     {
                         <div class="text-center">
-                            <a class="btn btn-dark btn-sm d-grid mb-2" asp-action="Edit" asp-controller="Posts" asp-route-id="@blog.Id">
+                            <a class="btn btn-dark d-grid mb-2" asp-action="Edit" asp-controller="Posts" asp-route-id="@blog.Id">
                                 Edit Post
                             </a>
                         </div>
@@ -79,9 +78,7 @@
 
 </div>
 
-<hr />
-
-<div class="row">
+<div class="row mt-5">
     <div class="col h3">
         Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
     </div>

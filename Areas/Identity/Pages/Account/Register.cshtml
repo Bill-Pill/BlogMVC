@@ -2,6 +2,9 @@
 @model RegisterModel
 @{
     ViewData["Title"] = "Register";
+    ViewData["HeaderImage"] = "/images/home-bg.png";
+    ViewData["MainText"] = "Code of Billy";
+    ViewData["SubText"] = "Register";
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -45,11 +48,11 @@
                 <label asp-for="Input.ConfirmPassword"></label>
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+            <button id="registerSubmit" type="submit" class="my-3 btn btn-lg btn-primary">Register</button>
         </form>
     </div>
     <div class="col-md-6 col-md-offset-2">
-        <section>
+       @* <section>
             <h3>Use another service to register.</h3>
             <hr />
             @{
@@ -78,7 +81,7 @@
                     </form>
                 }
             }
-        </section>
+        </section>*@
     </div>
 </div>
 
