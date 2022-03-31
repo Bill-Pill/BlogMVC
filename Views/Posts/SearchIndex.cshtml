@@ -10,6 +10,12 @@
 
 @model IPagedList<Post>
 
+    @{
+        ViewData["Title"] = "Search";
+    }
+
+<h3>Search Results for: "@ViewData["SearchTerm"].ToString()"</h3>
+
 <div class="row">
     @foreach (var post in Model)
     {
@@ -27,7 +33,7 @@
 
                     <br />
                     <div class="text-center">
-                        <a class="btn btn-dark btn-sm btn-block mb-2" asp-action="Details" asp-controller="Posts" asp-route-slug="@post.Slug">Read More</a>
+                        <a class="btn btn-dark btn-block mb-2" asp-action="Details" asp-controller="Posts" asp-route-slug="@post.Slug">Read More</a>
                     </div>
 
                 </div>
@@ -38,9 +44,8 @@
     }
 </div>
 
-<hr />
 
-<div class="row">
+<div class="row mt-5">
     <div class="col h3">
         Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
     </div>

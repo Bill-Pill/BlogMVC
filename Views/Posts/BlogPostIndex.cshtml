@@ -37,13 +37,13 @@
 
                     <br />
                     <div class="text-center">
-                        <a class="btn btn-dark btn-sm d-grid mb-2" asp-action="Details" asp-controller="Posts" asp-route-slug="@post.Slug">Read More</a>
+                        <a class="btn btn-dark d-grid mb-2" asp-action="Details" asp-controller="Posts" asp-route-slug="@post.Slug">Read More</a>
                     </div>
 
                     @if (User.IsInRole(BlogRole.Administrator.ToString()) || isAuthor)
                     {
                         <div class="text-center">
-                            <a class="btn btn-success btn-sm d-grid border-dark" asp-action="Edit" asp-controller="Posts" asp-route-id="@post.Id">Edit Post</a>
+                            <a class="btn btn-success d-grid border-dark" asp-action="Edit" asp-controller="Posts" asp-route-id="@post.Id">Edit Post</a>
                         </div>
                     }
                 </div>
@@ -54,9 +54,7 @@
     }
 </div>
 
-<hr />
-
-<div class="row">
+<div class="row mt-5">
     <div class="col h3">
         Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
     </div>
