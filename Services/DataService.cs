@@ -11,13 +11,15 @@ namespace BlogMVC.Services
         private readonly ApplicationDbContext _dbContext;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<BlogUser> _userManager;
+        private readonly IConfiguration _config;
 
 
-        public DataService(ApplicationDbContext dbContext, RoleManager<IdentityRole> roleManager, UserManager<BlogUser> userManager)
+        public DataService(ApplicationDbContext dbContext, RoleManager<IdentityRole> roleManager, UserManager<BlogUser> userManager, IConfiguration config)
         {
             _dbContext = dbContext;
             _roleManager = roleManager;
             _userManager = userManager;
+            _config = config;
         }
 
         public async Task ManageDataAsync()
@@ -59,8 +61,8 @@ namespace BlogMVC.Services
             // 1. Create new instance of BlogUser(admin)
             var adminUser = new BlogUser()
             {
-                Email = "delashmuttwa@gmail.com",
-                UserName = "delashmuttwa@gmail.com",
+                Email = _config["DefaultAdmin"],
+                UserName = _config["DefaultAdmin"],
                 FirstName = "Billy",
                 LastName = "DeLashmutt",
                 PhoneNumber = "(800) 555-1234",
@@ -68,7 +70,7 @@ namespace BlogMVC.Services
             };
 
             // 2. Use UserManager to create new user that is defined by adminUser
-            await _userManager.CreateAsync(adminUser, "Asdf123^");
+            await _userManager.CreateAsync(adminUser, _config["DefaultPass"]);
 
             // 3. Add this new user to the Administrator Role
             await _userManager.AddToRoleAsync(adminUser, BlogRole.Administrator.ToString());
@@ -76,15 +78,15 @@ namespace BlogMVC.Services
             // Create new BlogUser(Moderator)
             var modUser = new BlogUser()
             {
-                Email = "delashmuttwa@vt.edu",
-                UserName = "delashmuttwa@vt.edu",
+                Email = _config["DefaultMod"],
+                UserName = _config["DefaultMod"],
                 FirstName = "Bee",
                 LastName = "Dee",
                 PhoneNumber = "(800) 123-1234",
                 EmailConfirmed = true
             };
 
-            await _userManager.CreateAsync(modUser, "Asdf123^");
+            await _userManager.CreateAsync(modUser, _config["DefaultPass"]);
             await _userManager.AddToRoleAsync(modUser, BlogRole.Moderator.ToString());
         }
     }
