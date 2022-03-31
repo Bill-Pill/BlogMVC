@@ -8,18 +8,18 @@ namespace BlogMVC.Services
 {
     public class EmailService : IBlogEmailSender
     {
-        private readonly MailSettings _mailSettings;
+        private readonly IConfiguration _config;
 
-        public EmailService(IOptions<MailSettings> mailSettings)
+        public EmailService( IConfiguration config)
         {
-            _mailSettings = mailSettings.Value;
+            _config = config;
         }
 
         public async Task SendContactEmailAsync(string emailFrom, string name, string subject, string htmlMessage)
         {
             var email = new MimeMessage();
-            email.Sender = MailboxAddress.Parse(_mailSettings.Mail);
-            email.To.Add(MailboxAddress.Parse(_mailSettings.Mail));
+            email.Sender = MailboxAddress.Parse(_config["MailSettings:Mail"]);
+            email.To.Add(MailboxAddress.Parse(_config["MailSettings:Mail"]));
             email.Subject = subject;
 
             var builder = new BodyBuilder();
@@ -28,8 +28,8 @@ namespace BlogMVC.Services
             email.Body = builder.ToMessageBody();
 
             using var smtp = new SmtpClient();
-            smtp.Connect(_mailSettings.Host, _mailSettings.Port, SecureSocketOptions.StartTls);
-            smtp.Authenticate(_mailSettings.Mail, _mailSettings.Password);
+            smtp.Connect(_config["MailSettings:Host"], Int32.Parse(_config["MailSettings:Port"]), SecureSocketOptions.StartTls);
+            smtp.Authenticate(_config["MailSettings:Mail"], _config["MailSettings:Password"]);
 
             await smtp.SendAsync(email);
 
@@ -39,7 +39,7 @@ namespace BlogMVC.Services
         public async Task SendEmailAsync(string emailTo, string subject, string htmlMessage)
         {
             var email = new MimeMessage();
-            email.Sender = MailboxAddress.Parse(_mailSettings.Mail);
+            email.Sender = MailboxAddress.Parse(_config["MailSettings:Mail"]);
             email.To.Add(MailboxAddress.Parse(emailTo));
             email.Subject = subject;
 
@@ -51,8 +51,8 @@ namespace BlogMVC.Services
             email.Body = builder.ToMessageBody();
 
             using var smtp = new SmtpClient();
-            smtp.Connect(_mailSettings.Host, _mailSettings.Port, SecureSocketOptions.StartTls);
-            smtp.Authenticate(_mailSettings.Mail, _mailSettings.Password);
+            smtp.Connect(_config["MailSettings:Host"], Int32.Parse(_config["MailSettings:Port"]), SecureSocketOptions.StartTls);
+            smtp.Authenticate(_config["MailSettings:Mail"], _config["MailSettings:Password"]);
 
             await smtp.SendAsync(email);
 
